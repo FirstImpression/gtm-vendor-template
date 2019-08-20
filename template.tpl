@@ -1,4 +1,4 @@
-﻿___INFO___
+﻿﻿___INFO___
 
 {
 "displayName": "FirstImpressio.io Integration Tag",
@@ -22,15 +22,15 @@ ___TEMPLATE_PARAMETERS___
 
 [
 {
-"displayName": "Website ID",
-"simpleValueType": true,
-"name": "websiteId",
-"type": "TEXT",
 "valueValidators": [
 {
 "type": "POSITIVE_NUMBER"
 }
-]
+],
+"displayName": "Website ID",
+"simpleValueType": true,
+"name": "websiteId",
+"type": "TEXT"
 }
 ]
 
@@ -304,35 +304,38 @@ const setInWindow = require('setInWindow');
 const getCookieValues = require('getCookieValues');
 const setCookie = require('setCookie');
 
-var debugCookieName = 'fi_gtm_apd_debug';
-
-log('data =', data);
-
-var options = {
-websiteId: data.websiteId,
-scheme: "https://"
-};
-
-setInWindow('apd_options', options, true);
-
-var apdAdmin = 0;
-
+// Check if FI supression is enabled:
 if(getUrl('query').indexOf('disable_fi')!=-1) {
 log("disable_fi has been detected in URL. All of FirstImpression.io functionality is disabled for this page view.");
 data.gtmOnFailure();
 return;
 }
 
+// Options declaration:
+var debugCookieName = 'fi_gtm_apd_debug';
+var options = {
+websiteId: data.websiteId,
+scheme: "https://"
+};
+setInWindow('apd_options', options, true);
+
+// Include the adblock tracking script:
 injectScript('https://ecdn.analysis.fi/static/js/fab.js', function(){}, function(){});
+
+
+// Include the main JS bundle, switching to debug mode if needed:
+var apdAdmin = 0;
 
 if(getUrl('query').indexOf('apdAdmin')!=-1 || getUrl('fragment').indexOf('apdAdmin')!=-1 || getCookieValues(debugCookieName)=="1") {
 apdAdmin = 1;
 setCookie(debugCookieName, "1", {path: '/'});
 }
 
-injectScript('https://' + (apdAdmin ? 'cdn' : 'ecdn') + '.firstimpression.io/' + (apdAdmin ? 'fi.js?id='+options.websiteId : 'fi_client.js'), function(){}, function(){});
-
-data.gtmOnSuccess();
+injectScript(
+'https://' + (apdAdmin ? 'cdn' : 'ecdn') + '.firstimpression.io/' + (apdAdmin ? 'fi.js?id='+options.websiteId : 'fi_client.js'),
+function(){ data.gtmOnSuccess(); },
+function(){ data.gtmOnFailure(); }
+);
 
 
 ___NOTES___
