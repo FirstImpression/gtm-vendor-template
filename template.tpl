@@ -333,8 +333,8 @@ setCookie(debugCookieName, "1", {path: '/'});
 
 injectScript(
 'https://' + (apdAdmin ? 'cdn' : 'ecdn') + '.firstimpression.io/' + (apdAdmin ? 'fi.js?id='+options.websiteId : 'fi_client.js'),
-function(){ data.gtmOnSuccess(); },
-function(){ data.gtmOnFailure(); }
+data.gtmOnSuccess,
+data.gtmOnFailure
 );
 
 
