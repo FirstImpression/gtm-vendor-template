@@ -1,4 +1,4 @@
-﻿﻿___INFO___
+___INFO___
 
 {
 "displayName": "FirstImpressio.io Integration Tag",
