@@ -1,8 +1,21 @@
-﻿___INFO___
+﻿___TERMS_OF_SERVICE___
+
+
+By creating or modifying this file you agree to Google Tag Manager's Community
+
+Template Gallery Developer Terms of Service available at
+
+https://developers.google.com/tag-manager/gallery-tos (or such other URL as
+
+Google may provide), as modified from time to time.
+
+
+___INFO___
 
 {
   "displayName": "FirstImpressio.io Integration Tag",
   "description": "This tag adds support to the full suite of FirstImpression.io services, including monetization, adblock analysis, content filtering, ad placement management, and more",
+  "categories": ["ADVERTISING", "ANALYTICS", "EXPERIMENTATION"],
   "securityGroups": [],
   "id": "cvt_temp_public_id",
   "type": "TAG",
