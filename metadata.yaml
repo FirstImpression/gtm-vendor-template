@@ -1,5 +1,7 @@
 homepage: "https://www.firstimpression.io",
 documentation: "https://github.com/firstimpression-io/gtm-vendor-template/",
 versions:
+  - sha: 7575f4bcd04b18e7e272471e4aed11d3548c5e5d
+    changeNotes: Metadata updates, description updates
   - sha: 044512aa6b5a457d0d3655c20658272e4b40b88b
     changeNotes: Initial Version
