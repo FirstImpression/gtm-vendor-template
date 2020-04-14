@@ -217,6 +217,13 @@ ___WEB_PERMISSIONS___
       },
       "param": [
         {
+          "key": "cookieAccess",
+          "value": {
+            "type": 1,
+            "string": "specific"
+          }
+        },
+        {
           "key": "cookieNames",
           "value": {
             "type": 2,
@@ -341,7 +348,6 @@ var apdAdmin = 0;
 
 if(getUrl('query').indexOf('apdAdmin')!=-1 || getUrl('fragment').indexOf('apdAdmin')!=-1 || getCookieValues(debugCookieName)=="1") {
   apdAdmin = 1;
-  log("HEre");
   log(getUrl('query').indexOf('apdAdmin'));
   log(getUrl('fragment').indexOf('apdAdmin'));
   setCookie(debugCookieName, "1", {path: '/'});
